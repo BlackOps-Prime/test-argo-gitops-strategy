@@ -1,6 +1,0 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-
-resources:
-- application_gh_cloudify_waec_service.yaml
-- application_gh_just_pay_api_service.yaml
