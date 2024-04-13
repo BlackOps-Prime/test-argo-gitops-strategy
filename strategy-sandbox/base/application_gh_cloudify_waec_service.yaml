@@ -86,17 +86,17 @@ spec:
       restartPolicy: Always
 
 
----
+# ---
 
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: gh-cloudify-waec-configmap
-  namespace: main-etranzact-sandbox
-data:
-    RETRIEVECODE: https://gfbf28ff799c3ec-cdsproduction1.adb.uk-london-1.oraclecloudapps.com/ords/evouchergh/etranzact/v1/retrievecode
-    ETZUSER: etranzact
-    PINRETRIEVAL: https://gfbf28ff799c3ec-cdsproduction1.adb.uk-london-1.oraclecloudapps.com/ords/evouchergh/etranzact/v1/retrievecode
-    GETCODES: https://gfbf28ff799c3ec-cdsproduction1.adb.uk-london-1.oraclecloudapps.com/ords/evouchergh/etranzact/v1/sendcode
-    PASSWORD: 8a178a70059e42a8ded4701c0474793
-    SENDCODES: https://gfbf28ff799c3ec-cdsproduction1.adb.uk-london-1.oraclecloudapps.com/ords/evouchergh/etranzact/v1/sendcode
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: gh-cloudify-waec-configmap
+#   namespace: main-etranzact-sandbox
+# data:
+#     RETRIEVECODE: https://gfbf28ff799c3ec-cdsproduction1.adb.uk-london-1.oraclecloudapps.com/ords/evouchergh/etranzact/v1/retrievecode
+#     ETZUSER: etranzact
+#     PINRETRIEVAL: https://gfbf28ff799c3ec-cdsproduction1.adb.uk-london-1.oraclecloudapps.com/ords/evouchergh/etranzact/v1/retrievecode
+#     GETCODES: https://gfbf28ff799c3ec-cdsproduction1.adb.uk-london-1.oraclecloudapps.com/ords/evouchergh/etranzact/v1/sendcode
+#     PASSWORD: 8a178a70059e42a8ded4701c0474793
+#     SENDCODES: https://gfbf28ff799c3ec-cdsproduction1.adb.uk-london-1.oraclecloudapps.com/ords/evouchergh/etranzact/v1/sendcode

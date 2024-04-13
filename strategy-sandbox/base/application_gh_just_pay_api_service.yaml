@@ -88,50 +88,50 @@ spec:
       restartPolicy: Always
 
 
----
+# ---
 
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: gh-just-pay-api-configmap
-  namespace: main-etranzact-sandbox
-data:
-    # APP CONFIG
-    NODE_ENV: "development"
-    PORT: "4000"
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: gh-just-pay-api-configmap
+#   namespace: main-etranzact-sandbox
+# data:
+#     # APP CONFIG
+#     NODE_ENV: "development"
+#     PORT: "4000"
 
-    # DOCKER DATABASE CONNECTION
-    DATABASE_HOST: gh-etranzact-sandbox-db.cxoo8reucyxf.eu-west-1.rds.amazonaws.com
-    DATABASE_PORT: "3306"
-    DATABASE_USER: sandbox_user
-    DATABASE_PASSWORD: nLXzE8p..MBLrT
-    DATABASE_NAME: easy_collect
-    DATABASE_DIALECT: mysql
+#     # DOCKER DATABASE CONNECTION
+#     DATABASE_HOST: gh-etranzact-sandbox-db.cxoo8reucyxf.eu-west-1.rds.amazonaws.com
+#     DATABASE_PORT: "3306"
+#     DATABASE_USER: sandbox_user
+#     DATABASE_PASSWORD: nLXzE8p..MBLrT
+#     DATABASE_NAME: easy_collect
+#     DATABASE_DIALECT: mysql
 
-    # JWT
-    JWT_ADMIN_SECRET: "SDSFrjweirwjDSFIdoiqjrqwreq3493r352545439@45454613443252EOREEFNErhietendsweqwre"
-    JWT_ACCOUNT_SECRET: "sadakdakfIDIWFWWDmdaidwf240502@24343934ADSAFWEFD46654dsafSDFFWRIERCNWEJRERWEWR"
-    JWT_TOKEN_AUDIENCE: localhost:4000
-    JWT_TOKEN_ISSUER: localhost:4000
-    JWT_ACCESS_TOKEN_TTL: "3600"
-    JWT_REFRESH_TOKEN_TTL: "86400"
+#     # JWT
+#     JWT_ADMIN_SECRET: "SDSFrjweirwjDSFIdoiqjrqwreq3493r352545439@45454613443252EOREEFNErhietendsweqwre"
+#     JWT_ACCOUNT_SECRET: "sadakdakfIDIWFWWDmdaidwf240502@24343934ADSAFWEFD46654dsafSDFFWRIERCNWEJRERWEWR"
+#     JWT_TOKEN_AUDIENCE: localhost:4000
+#     JWT_TOKEN_ISSUER: localhost:4000
+#     JWT_ACCESS_TOKEN_TTL: "3600"
+#     JWT_REFRESH_TOKEN_TTL: "86400"
 
-    # SENTRY CONFIGURATION
-    SENTRY_DNS: https://3c9cd442d0d9cfbcfef5dfe028bde8af@o1215535.ingest.sentry.io/4506729480716288
-    SENTRY_ENABLED: "true"
+#     # SENTRY CONFIGURATION
+#     SENTRY_DNS: https://3c9cd442d0d9cfbcfef5dfe028bde8af@o1215535.ingest.sentry.io/4506729480716288
+#     SENTRY_ENABLED: "true"
 
-    # NANOID KEY GEN
-    NANOID_GEN: "1234567890"
+#     # NANOID KEY GEN
+#     NANOID_GEN: "1234567890"
 
-    # SMS URL
-    SMS_URL: http://webpay.etranzactgh.com/smsprocessor/etz/sms/ext/process
-    TERMINAL_ID: ETZSMS
-    SMS_FROM: etranzact
+#     # SMS URL
+#     SMS_URL: http://webpay.etranzactgh.com/smsprocessor/etz/sms/ext/process
+#     TERMINAL_ID: ETZSMS
+#     SMS_FROM: etranzact
 
-    # FUNDGATE CREDENTIALS
-    SECRET: "ksljfadaeoxldfo"
-    FG_CARD: "0060000244"
-    FG_PIN: "wkHBKcduFasNdYqD0TGG3Q=="
-    FUNDGATE_URL: "https://webpay.etranzactgh.com/FundGate3.0/ws"
-    CALLBACK_URL: "https://ae369783f021e4d1abcca51d6cf9aca6-856629651.eu-west-1.elb.amazonaws.com/justpay-api/api/v1/transaction/fundgate/callback"
-    FUNDGATE_COMPANYID: "TESTFGMOMODEBIT"
+#     # FUNDGATE CREDENTIALS
+#     SECRET: "ksljfadaeoxldfo"
+#     FG_CARD: "0060000244"
+#     FG_PIN: "wkHBKcduFasNdYqD0TGG3Q=="
+#     FUNDGATE_URL: "https://webpay.etranzactgh.com/FundGate3.0/ws"
+#     CALLBACK_URL: "https://ae369783f021e4d1abcca51d6cf9aca6-856629651.eu-west-1.elb.amazonaws.com/justpay-api/api/v1/transaction/fundgate/callback"
+#     FUNDGATE_COMPANYID: "TESTFGMOMODEBIT"
