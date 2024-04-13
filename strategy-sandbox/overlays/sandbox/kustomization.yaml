@@ -5,7 +5,7 @@ resources:
   - ../../base
 
 patches:
-  - path: application_gh_cloudify_waec_service.yaml
+  - path: ../application_gh_cloudify_waec_service.yaml
     target:
       kind: Deployment
     strategicMergePatch: 
