@@ -5,8 +5,8 @@ resources:
   - ../../base
 
 patches:
-  - path: ../../base/application_gh_cloudify_waec_service.yaml
-    target:
+  # - path: ../../base/application_gh_cloudify_waec_service.yaml
+  - target:
       kind: Deployment
       name: gh-cloudify-waec
   - patch: |
