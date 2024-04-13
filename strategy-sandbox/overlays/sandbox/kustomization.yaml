@@ -8,9 +8,9 @@ patches:
   - path: application_gh_cloudify_waec_service.yaml
     target:
       kind: Deployment
-    # strategicMergePatch:
-    #   spec:
-    #     replicas: 3
+    strategicMergePatch: 
+      spec:
+        replicas: 3
         # template:
         #   spec:
         #     containers:
