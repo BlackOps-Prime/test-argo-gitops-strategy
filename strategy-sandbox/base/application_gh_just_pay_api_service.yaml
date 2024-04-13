@@ -1,0 +1,137 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gh-just-pay-api-service
+  namespace: main-etranzact-sandbox
+spec:
+  selector:
+    app: gh-just-pay-api
+  type: ClusterIP
+  # sessionAffinity: None
+  # sessionAffinityConfig:
+  #   clientIP:
+  #     timeoutSeconds: 10800
+  ports:
+  - name: justpay-api
+    protocol: TCP
+    port: 4000
+    targetPort: 4000
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  gh-just-pay-api-deployment
+  namespace: main-etranzact-sandbox
+  labels:
+    app:  gh-just-pay-api
+spec:
+  minReadySeconds: 15
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: gh-just-pay-api
+  replicas: 1
+  # strategy:
+  #   rollingUpdate:
+  #     maxSurge: 25%
+  #     maxUnavailable: 25%
+  #   type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app:  gh-just-pay-api
+    spec:
+      containers:
+      - name:  gh-just-pay-api
+        image:  842092678711.dkr.ecr.eu-west-1.amazonaws.com/gh-just-pay-api-service:dev-0.0.1-11
+        # command: [ "sleep" ]
+        # args: [ "infinity" ]
+        imagePullPolicy: Always
+        ports:
+        - containerPort:  4000
+          name:  justpay-api
+        envFrom:
+        - configMapRef:
+            name: gh-just-pay-api-configmap
+        # env:
+        # - name: DB_HOST
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: MYAPP
+        #       key: DB_HOST
+        # resources:
+        #   requests:
+        #     cpu: 100m
+        #     memory: 100Mi
+        #   limits:
+        #     cpu: 100m
+        #     memory: 100Mi
+        # livenessProbe:
+        #   tcpSocket:
+        #     port: 80
+        #   initialDelaySeconds: 5
+        #   timeoutSeconds: 5
+        #   successThreshold: 1
+        #   failureThreshold: 3
+        #   periodSeconds: 10
+        # readinessProbe:
+        #   httpGet:
+        #     path: /_status/healthz
+        #     port: 80
+        #   initialDelaySeconds: 5
+        #   timeoutSeconds: 2
+        #   successThreshold: 1
+        #   failureThreshold: 3
+        #   periodSeconds: 10
+      restartPolicy: Always
+
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gh-just-pay-api-configmap
+  namespace: main-etranzact-sandbox
+data:
+    # APP CONFIG
+    NODE_ENV: "development"
+    PORT: "4000"
+
+    # DOCKER DATABASE CONNECTION
+    DATABASE_HOST: gh-etranzact-sandbox-db.cxoo8reucyxf.eu-west-1.rds.amazonaws.com
+    DATABASE_PORT: "3306"
+    DATABASE_USER: sandbox_user
+    DATABASE_PASSWORD: nLXzE8p..MBLrT
+    DATABASE_NAME: easy_collect
+    DATABASE_DIALECT: mysql
+
+    # JWT
+    JWT_ADMIN_SECRET: "SDSFrjweirwjDSFIdoiqjrqwreq3493r352545439@45454613443252EOREEFNErhietendsweqwre"
+    JWT_ACCOUNT_SECRET: "sadakdakfIDIWFWWDmdaidwf240502@24343934ADSAFWEFD46654dsafSDFFWRIERCNWEJRERWEWR"
+    JWT_TOKEN_AUDIENCE: localhost:4000
+    JWT_TOKEN_ISSUER: localhost:4000
+    JWT_ACCESS_TOKEN_TTL: "3600"
+    JWT_REFRESH_TOKEN_TTL: "86400"
+
+    # SENTRY CONFIGURATION
+    SENTRY_DNS: https://3c9cd442d0d9cfbcfef5dfe028bde8af@o1215535.ingest.sentry.io/4506729480716288
+    SENTRY_ENABLED: "true"
+
+    # NANOID KEY GEN
+    NANOID_GEN: "1234567890"
+
+    # SMS URL
+    SMS_URL: http://webpay.etranzactgh.com/smsprocessor/etz/sms/ext/process
+    TERMINAL_ID: ETZSMS
+    SMS_FROM: etranzact
+
+    # FUNDGATE CREDENTIALS
+    SECRET: "ksljfadaeoxldfo"
+    FG_CARD: "0060000244"
+    FG_PIN: "wkHBKcduFasNdYqD0TGG3Q=="
+    FUNDGATE_URL: "https://webpay.etranzactgh.com/FundGate3.0/ws"
+    CALLBACK_URL: "https://ae369783f021e4d1abcca51d6cf9aca6-856629651.eu-west-1.elb.amazonaws.com/justpay-api/api/v1/transaction/fundgate/callback"
+    FUNDGATE_COMPANYID: "TESTFGMOMODEBIT"

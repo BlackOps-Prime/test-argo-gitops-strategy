@@ -1,0 +1,102 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gh-cloudify-waec-service
+  namespace: main-etranzact-sandbox
+spec:
+  selector:
+    app: gh-cloudify-waec
+  type: ClusterIP
+  # sessionAffinity: None
+  # sessionAffinityConfig:
+  #   clientIP:
+  #     timeoutSeconds: 10800
+  ports:
+  - name: cloudify-port
+    protocol: TCP
+    port: 7070
+    targetPort: 7070
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  gh-cloudify-waec-deployment
+  namespace: main-etranzact-sandbox
+  labels:
+    app:  gh-cloudify-waec
+spec:
+  minReadySeconds: 15
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: gh-cloudify-waec
+  replicas: 1
+  # strategy:
+  #   rollingUpdate:
+  #     maxSurge: 25%
+  #     maxUnavailable: 25%
+  #   type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app:  gh-cloudify-waec
+    spec:
+      containers:
+      - name:  gh-cloudify-waec
+        image:  842092678711.dkr.ecr.eu-west-1.amazonaws.com/gh-cloudify-waec-service:release-1.0.0-SNAPSHOT-1
+        imagePullPolicy: Always
+        ports:
+        - containerPort:  7070
+          name:  verification
+        envFrom:
+        - configMapRef:
+            name: gh-cloudify-waec-configmap
+        # env:
+        # - name: DB_HOST
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: MYAPP
+        #       key: DB_HOST
+        # resources:
+        #   requests:
+        #     cpu: 100m
+        #     memory: 100Mi
+        #   limits:
+        #     cpu: 100m
+        #     memory: 100Mi
+        # livenessProbe:
+        #   tcpSocket:
+        #     port: 80
+        #   initialDelaySeconds: 5
+        #   timeoutSeconds: 5
+        #   successThreshold: 1
+        #   failureThreshold: 3
+        #   periodSeconds: 10
+        # readinessProbe:
+        #   httpGet:
+        #     path: /_status/healthz
+        #     port: 80
+        #   initialDelaySeconds: 5
+        #   timeoutSeconds: 2
+        #   successThreshold: 1
+        #   failureThreshold: 3
+        #   periodSeconds: 10
+      restartPolicy: Always
+
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gh-cloudify-waec-configmap
+  namespace: main-etranzact-sandbox
+data:
+    RETRIEVECODE: https://gfbf28ff799c3ec-cdsproduction1.adb.uk-london-1.oraclecloudapps.com/ords/evouchergh/etranzact/v1/retrievecode
+    ETZUSER: etranzact
+    PINRETRIEVAL: https://gfbf28ff799c3ec-cdsproduction1.adb.uk-london-1.oraclecloudapps.com/ords/evouchergh/etranzact/v1/retrievecode
+    GETCODES: https://gfbf28ff799c3ec-cdsproduction1.adb.uk-london-1.oraclecloudapps.com/ords/evouchergh/etranzact/v1/sendcode
+    PASSWORD: 8a178a70059e42a8ded4701c0474793
+    SENDCODES: https://gfbf28ff799c3ec-cdsproduction1.adb.uk-london-1.oraclecloudapps.com/ords/evouchergh/etranzact/v1/sendcode
