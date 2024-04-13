@@ -6,12 +6,10 @@ resources:
 
 patches:
   - path: ../../base/application_gh_cloudify_waec_service.yaml
-#     target:
-#       kind: Deployment
-#     strategicMergePatch: 
-#       spec:
-#         replicas: 3
-        # template:
-        #   spec:
-        #     containers:
-        #       image: 842092678711.dkr.ecr.eu-west-1.amazonaws.com/gh-cloudify-waec-service:release-1.0.0-SNAPSHOT-1
+    target:
+      kind: Deployment
+      name: gh-cloudify-waec
+  - patch: |
+      - op: replace
+        path: /spec/replicas
+        value: 3
