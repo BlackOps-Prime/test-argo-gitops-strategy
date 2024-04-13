@@ -9,7 +9,7 @@ patches:
   - target:
       kind: Deployment
       name: gh-cloudify-waec
-  - patch: |
+    patch: |
       - op: replace
         path: /spec/replicas
         value: 3
