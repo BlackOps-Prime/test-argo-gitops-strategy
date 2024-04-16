@@ -8,7 +8,7 @@ patches:
   # - path: ../../base/application_gh_cloudify_waec_service.yaml
   - target:
       kind: Deployment
-      name: gh-cloudify-waec
+      name: gh-just-pay-api-deployment
     patch: |
       - op: replace
         path: /spec/replicas
