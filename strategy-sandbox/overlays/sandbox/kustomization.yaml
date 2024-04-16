@@ -4,15 +4,15 @@ kind: Kustomization
 resources:
   - ../../base
 
-patches:
-  # - path: ../../base/application_gh_cloudify_waec_service.yaml
-  - target:
-      kind: Deployment
-      name: gh-just-pay-api-deployment
-    patch: |
-      - op: replace
-        path: /spec/replicas
-        value: 3
-      - op: replace
-        path: /spec/template/spec/containers/0/image
-        value: nginx:latest
+# patches:
+#   # - path: ../../base/application_gh_cloudify_waec_service.yaml
+#   - target:
+#       kind: Deployment
+#       name: gh-just-pay-api-deployment
+#     patch: |
+#       - op: replace
+#         path: /spec/replicas
+#         value: 3
+#       - op: replace
+#         path: /spec/template/spec/containers/0/image
+#         value: nginx:latest
