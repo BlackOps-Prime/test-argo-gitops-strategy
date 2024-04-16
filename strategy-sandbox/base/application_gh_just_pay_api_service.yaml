@@ -52,9 +52,9 @@ spec:
         ports:
         - containerPort:  4000
           name:  justpay-api
-        envFrom:
-        - configMapRef:
-            name: gh-just-pay-api-configmap
+        # envFrom:
+        # - configMapRef:
+        #     name: gh-just-pay-api-configmap
         # env:
         # - name: DB_HOST
         #   valueFrom:
