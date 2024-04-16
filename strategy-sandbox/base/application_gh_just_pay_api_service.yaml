@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: gh-just-pay-api-service
+  name: default
   namespace: main-etranzact-sandbox
 spec:
   selector:
@@ -23,7 +23,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name:  gh-just-pay-api-deployment
-  namespace: main-etranzact-sandbox
+  namespace: default
   labels:
     app:  gh-just-pay-api
 spec:
